@@ -1,6 +1,7 @@
 import tkinter as tk
 import Login as login
 import DataBase
+from tkinter import messagebox
 
 def start_app():
     def sign_up():
@@ -38,6 +39,11 @@ def start_app():
     back_to_login_btn.pack()
 
     root.mainloop()
+def MessageBox(IsError : bool):
+    if IsError:
+        messagebox.showinfo("Sign Up Success")
+    else:
+        messagebox.showerror("Sign Up Failure")
 
 if __name__ == "__main__":
     start_app()

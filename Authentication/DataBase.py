@@ -1,4 +1,5 @@
 import sqlite3
+import SignUp
 
 def create_new_user(username, password):
     # 1. Connect to (or create) a database file
@@ -22,9 +23,13 @@ def create_new_user(username, password):
         cursor.execute("INSERT INTO users (username, password_hash) VALUES (?, ?)", new_user)
         # 4. Save (commit) the changes
         conn.commit()
+        SignUp.MessageBox(True)
+        
+        
     except sqlite3.IntegrityError as e:
         if "UNIQUE constraint failed" in str(e):
             print(f"Error: The username '{username}' is already taken.")
+        SignUp.MessageBox(False)
     # 5. Fetch data
     cursor.execute("SELECT * FROM users")
     all_users = cursor.fetchall()  # Returns a list of tuples
